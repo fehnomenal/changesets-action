@@ -1,5 +1,11 @@
 # @changesets/action
 
+## 1.6.0
+
+### Minor Changes
+
+- [`94b7934`](https://github.com/changesets/action/commit/94b793401bf62db49b85362b36c2b54ff440e6c2) Thanks [@fehnomenal](https://github.com/fehnomenal)! - Allow passing the token as an input
+
 ## 1.5.3
 
 ### Patch Changes
