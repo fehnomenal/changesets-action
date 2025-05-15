@@ -316,12 +316,17 @@ export async function runVersion({
 
   await git.pushChanges({ branch: versionBranch, message: finalCommitMessage });
 
+  const head = `${github.context.repo.owner}:${versionBranch}`;
+
   let existingPullRequests = await octokit.rest.pulls.list({
     ...github.context.repo,
     state: "open",
-    head: `${github.context.repo.owner}:${versionBranch}`,
+    head,
     base: branch,
   });
+  existingPullRequests.data = existingPullRequests.data.filter(
+    (pr) => pr.head.label === head && pr.base.ref === branch
+  );
   core.info(JSON.stringify(existingPullRequests.data, null, 2));
 
   const changedPackagesInfo = (await changedPackagesInfoPromises)
