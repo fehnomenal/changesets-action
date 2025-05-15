@@ -322,6 +322,12 @@ export async function runVersion({
     head: `${github.context.repo.owner}:${versionBranch}`,
     base: branch,
   });
+  existingPullRequests.data = existingPullRequests.data.filter(
+    (pr) =>
+      pr.head.repo.owner.login === github.context.repo.owner &&
+      pr.head.ref === versionBranch &&
+      pr.base.ref === branch
+  );
   core.info(JSON.stringify(existingPullRequests.data, null, 2));
 
   const changedPackagesInfo = (await changedPackagesInfoPromises)
