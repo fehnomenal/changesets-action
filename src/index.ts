@@ -10,8 +10,6 @@ const getOptionalInput = (name: string) => core.getInput(name) || undefined;
 (async () => {
   let githubToken = getOptionalInput("githubToken") ?? process.env.GITHUB_TOKEN;
 
-  core.info(`token: ${githubToken?.toUpperCase()}`);
-
   if (!githubToken) {
     core.setFailed("Please add the GITHUB_TOKEN to the changesets action");
     return;
