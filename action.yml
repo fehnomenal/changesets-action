@@ -4,6 +4,9 @@ runs:
   using: "node20"
   main: "dist/index.js"
 inputs:
+  githubToken:
+    description: A custom GitHub token.
+    required: false
   publish:
     description: "The command to use to build and publish packages"
     required: false

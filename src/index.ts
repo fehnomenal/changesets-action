@@ -8,9 +8,9 @@ import { runPublish, runVersion } from "./run";
 const getOptionalInput = (name: string) => core.getInput(name) || undefined;
 
 (async () => {
-  let githubToken = process.env.GITHUB_TOKEN;
+  let githubToken = getOptionalInput("githubToken") ?? process.env.GITHUB_TOKEN;
 
-  core.info(`token: ${githubToken?.toUpperCase()}`)
+  core.info(`token: ${githubToken?.toUpperCase()}`);
 
   if (!githubToken) {
     core.setFailed("Please add the GITHUB_TOKEN to the changesets action");
